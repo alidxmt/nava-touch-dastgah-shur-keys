@@ -1,9 +1,5 @@
 
 
-// var Audicnt = window.AudioContext || window.webkitAudioContext;
-// Audicnt.context = new AudioContext(); 
-
-
 class Nava {
     constructor (_name='nava',_width=274,_height=(274),_number_of_keys=4,_color=0,number_of_keys_in_a_circle_of_keys=_number_of_keys,_dangs="shur",_first_frequency=360) {
 
@@ -145,10 +141,10 @@ class Nava {
             aRect.setAttribute("fill", _key_color);
             // aRect.setAttribute("stroke",'none')rgb('+index*60+','+80+','+100+')
             // aRect.setAttribute("stroke-width", '1')
-            aRect.addEventListener('mousedown', () => {event.preventDefault();aRect.setAttribute("fill", _key_color_active);});
-            aRect.addEventListener('mouseup', () => {event.preventDefault();aRect.setAttribute("fill", _key_color_over);});
+            aRect.addEventListener('mousedown', () => {event.preventDefault();aRect.setAttribute("fill", _key_color_active);navaz(this,(1/(2*this.keynumber)).toPrecision(22));});
+            aRect.addEventListener('mouseup', () => {event.preventDefault();aRect.setAttribute("fill", _key_color_over);navaz(this,0.0000001)});
             aRect.addEventListener('mouseover', () => {event.preventDefault();aRect.setAttribute("fill", _key_color_over)});
-            aRect.addEventListener('mouseleave',() => {if (event.cancelable) {event.preventDefault()};aRect.setAttribute("fill", _key_color)});
+            aRect.addEventListener('mouseleave',() => {if (event.cancelable) {event.preventDefault()};aRect.setAttribute("fill", _key_color);navaz(this,0.0000001)});
             aRect.addEventListener('touchstart',() => {if (event.cancelable) {event.preventDefault()};aRect.setAttribute("fill", _key_color_active);navaz(this,(1/(2*this.keynumber)).toPrecision(22));});
             aRect.addEventListener('touchmove',() => {if (event.cancelable) {event.preventDefault()}});      
             aRect.addEventListener('touchend',() => {if (event.cancelable) {event.preventDefault()};aRect.setAttribute("fill", _key_color);navaz(this,0.0000001);});
@@ -210,90 +206,28 @@ class Nava {
                 //aCircle.setAttribute("fill", _color_object_id[((index).toString(2)[in_index])]);
                 aCircle.setAttribute("fill", _color_object_id[_color(parseInt(((index+1)%(this.key_circle))).toString(2).split("").reverse()[in_index])]);
                 this.gSurf.appendChild(aCircle);                
-            }
-           
-
-            // let aText = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-            // aText.innerHTML="0110";
-            // aText.setAttributeNS(null,"x",0)
-            // aText.setAttributeNS(null,"y",15)
-            // aText.setAttributeNS(null,"font-family","Tahoma, Geneva, Verdana, sans-serif")
-            // aText.setAttributeNS(null,"font-size","smaller")
-            // aText.setAttributeNS(null,"fill","gray")            
-
-
-            // this.gSurf.appendChild(aText);
-// 
-// console.log(aText.innerHTML)
-
-        
-            // 64, 214, 219
-
-
-
-
-
-
-            //add four circle top left/ change color based on 6,7,8,9,10,11 distance in talaei system
-            
-      
-      
+            }              
         }
     return 
     } 
 }
 var Arr_MazrabHa = [1,(2**(500/1200)),(2**(2*500/1200)),(2**((2*500+200)/1200)),(2**((2*500+200)/1200))*2**(500/1200),(2**((2*500+200)/1200))*2**(2*500/1200),(2**((2*500+200)/1200))*2**((200+2*500)/1200)]
 var mainFrequency = 225;
-// var NavaDaramad = new Nava('daramad-1',620,100,7,0,8,"shur shur",360)
-
-// var NavaOuj = new Nava('ouj-1',620,100,7,0,8,"shur shur",360*(2**(500/1200)))
-
-// var NavaSalmak = new Nava('salmak-1',620,100,7,0,8,"shur nava",360*(2**(500/1200)))
-
-// var NavaBozorg = new Nava('bozorg-1',620,100,7,0,8,"shur nava",360*(2**(2*500/1200)))
-
-// var NavaOzal1 = new Nava('ozal-1',360,100,4,0,5,"nava",360*(2**(2*500/1200)))
-// var NavaOzal2 = new Nava('ozal-2',360,100,4,0,5,"shur",360*(2**((2*500+200)/1200)))
-
-// var NavaDaramadZir = new Nava('daramad-zir-1',620,100,7,0,8,"shur shur",360*(2**((2*500+200)/1200)))
-
-
-// var NavaShahnaz1 = new Nava('shahnaz-1',620,100,7,0,8,"shur shur",360*(2**((2*500+200)/1200))*2**(500/1200))
-// var NavaShahnaz2 = new Nava('shahnaz-2',620,100,7,0,8,"shur nava",360*(2**((2*500+200)/1200))*2**(500/1200))
-// var NavaShahnaz3 = new Nava('shahnaz-3',620,100,7,0,8,"shur nava",360*(2**((2*500+200)/1200))*2**(2*500/1200))
-
-
-// var NavaOujShahrAshoub1 = new Nava('ouj-shahr-ashoub-1',360,100,4,0,5,"nava",360*(2**((2*500+200)/1200))*2**(2*500/1200))
-// var NavaOujShahrAshoub2 = new Nava('ouj-shahr-ashoub-2',360,100,4,0,5,"shur",360*(2**((2*500+200)/1200))*2**((200+2*500)/1200))
-// document.getElementById("main").addEventListener("mousemove",function(){console.log(event.clientX,event.clientY)})
 
 var NavaDaramad = new Nava('daramad-1',620,100,7,0,8,"shur shur",mainFrequency*Arr_MazrabHa[0])
-document.getElementById('daramad-1-text').innerHTML = "Daramad-o-rohab"
 var NavaOuj = new Nava('ouj-1',620,100,7,0,8,"shur shur",mainFrequency*Arr_MazrabHa[1])
-document.getElementById('ouj-1-text').innerHTML = "Ouj"
 var NavaSalmak = new Nava('salmak-1',620,100,7,0,8,"shur nava",mainFrequency*Arr_MazrabHa[1])
-document.getElementById('salmak-1-text').innerHTML = "Salmak"
 
 var NavaBozorg = new Nava('bozorg-1',620,100,7,0,8,"shur nava",mainFrequency*Arr_MazrabHa[2])
-document.getElementById('bozorg-1-text').innerHTML = "Bozorg"
 
 var NavaOzal1 = new Nava('ozal-1',360,100,4,0,5,"nava",mainFrequency*Arr_MazrabHa[2])
-document.getElementById('ozal-1-text').innerHTML = "Ozal"
 var NavaOzal2 = new Nava('ozal-2',360,100,4,0,5,"shur",mainFrequency*Arr_MazrabHa[3])
-document.getElementById('ozal-2-text').innerHTML = "Ozal"
 
 var NavaDaramadZir = new Nava('daramad-zir-1',620,100,7,0,8,"shur shur",mainFrequency*Arr_MazrabHa[3])
-document.getElementById('daramad-zir-1-text').innerHTML = "Daramad Zir"
 
 var NavaShahnaz1 = new Nava('shahnaz-1',620,100,7,0,8,"shur shur",mainFrequency*Arr_MazrabHa[4])
-document.getElementById('shahnaz-1-text').innerHTML = "Shahnaz"
 var NavaShahnaz2 = new Nava('shahnaz-2',620,100,7,0,8,"shur nava",mainFrequency*Arr_MazrabHa[4])
-document.getElementById('shahnaz-2-text').innerHTML = "karachi"
 var NavaShahnaz3 = new Nava('shahnaz-3',620,100,7,0,8,"shur nava",mainFrequency*Arr_MazrabHa[5])
-document.getElementById('shahnaz-3-text').innerHTML = "razi"
 
 var NavaOujShahrAshoub1 = new Nava('ouj-shahr-ashoub-1',360,100,4,0,5,"nava",mainFrequency*Arr_MazrabHa[5])
-document.getElementById('ouj-shahr-ashoub-1-text').innerHTML = "Ouj Shahr Ashoub"
 var NavaOujShahrAshoub2 = new Nava('ouj-shahr-ashoub-2',360,100,4,0,5,"shur",mainFrequency*Arr_MazrabHa[6])
-document.getElementById('ouj-shahr-ashoub-2-text').innerHTML = "Ouj Shahr Ashoub"
-
