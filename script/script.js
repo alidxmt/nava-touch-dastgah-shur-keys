@@ -174,10 +174,12 @@ class Nava {
                 }
                 
                 if (_this.keyAudio[index].start_status == 0) {
-                    _this.keyAudio[index].oscillator.start();
                     _this.keyAudio[index].start_status =1;
                     _this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context.currentTime);
+
                     _this.keyAudio[index].gainNode.gain.setValueAtTime(0.0000000001, _this.keyAudio[index].context.currentTime);
+                    _this.keyAudio[index].oscillator.start();
+
                     _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain*scale_gain, _this.keyAudio[index].context.currentTime+.06);
                 }
                 else {
@@ -285,3 +287,16 @@ var NavaShahnaz3 = new Nava('shahnaz-3',620,100,7,0,8,"shur nava",mainFrequency*
 
 var NavaOujShahrAshoub1 = new Nava('ouj-shahr-ashoub-1',360,100,4,0,5,"nava",mainFrequency*Arr_MazrabHa[5])
 var NavaOujShahrAshoub2 = new Nava('ouj-shahr-ashoub-2',360,100,4,0,5,"shur",mainFrequency*Arr_MazrabHa[6])
+
+// document.getElementById('daramad-1-text').innerHTML = "Daramad-o-rohab"
+// document.getElementById('ouj-1-text').innerHTML = "Ouj"
+// document.getElementById('salmak-1-text').innerHTML = "Salmak"
+// document.getElementById('bozorg-1-text').innerHTML = "Bozorg"
+// document.getElementById('ozal-1-text').innerHTML = "Ozal"
+// document.getElementById('ozal-2-text').innerHTML = "Ozal"
+// document.getElementById('daramad-zir-1-text').innerHTML = "Daramad Zir"
+// document.getElementById('shahnaz-1-text').innerHTML = "Shahnaz"
+// document.getElementById('shahnaz-2-text').innerHTML = "karachi"
+// document.getElementById('shahnaz-3-text').innerHTML = "razi"
+// document.getElementById('ouj-shahr-ashoub-1-text').innerHTML = "Ouj Shahr Ashoub"
+// document.getElementById('ouj-shahr-ashoub-2-text').innerHTML = "Ouj Shahr Ashoub"
