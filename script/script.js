@@ -179,14 +179,11 @@ class Nava {
                     _this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context.currentTime);
                     _this.keyAudio[index].gainNode.gain.setValueAtTime(0.0000000001, _this.keyAudio[index].context.currentTime);
                     _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain*scale_gain, _this.keyAudio[index].context.currentTime+.06);
-                    console.log(_gain*scale_gain)
-
                 }
                 else {
                 _this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context.currentTime);
                 _this.keyAudio[index].gainNode.gain.setValueAtTime(_this.keyAudio[index].gainNode.gain.value, _this.keyAudio[index].context.currentTime);
                 _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain*scale_gain, _this.keyAudio[index].context.currentTime+.06);
-                console.log(_gain*scale_gain)
                 }
             }
 
