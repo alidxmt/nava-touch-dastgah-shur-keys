@@ -167,19 +167,19 @@ class Nava {
 
             function navaz(_this,_gain) {
                 //_this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context);     
-                let scale_gain = .1;
-                if (_this.intervals[_this._dangs][index]*_this.firstFrequency<4000) {
-                    scale_gain = (4000-_this.intervals[_this._dangs][index]*_this.firstFrequency)*(1/((_this.intervals[_this._dangs][index]*_this.firstFrequency)+4000))
+                let scale_gain = .4;
+                if (_this.intervals[_this._dangs][index]*_this.firstFrequency<3000) {
+                    scale_gain = (3000-_this.intervals[_this._dangs][index]*_this.firstFrequency)*(1/((_this.intervals[_this._dangs][index]*_this.firstFrequency)+3000))
                     scale_gain =scale_gain;
                 }
+                
                 
                 if (_this.keyAudio[index].start_status == 0) {
                     _this.keyAudio[index].start_status =1;
                     _this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context.currentTime);
-
-                    _this.keyAudio[index].gainNode.gain.setValueAtTime(0.0000000001, _this.keyAudio[index].context.currentTime);
                     _this.keyAudio[index].oscillator.start();
 
+                    _this.keyAudio[index].gainNode.gain.setValueAtTime(0.0000000001, _this.keyAudio[index].context.currentTime);
                     _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain*scale_gain, _this.keyAudio[index].context.currentTime+.06);
                 }
                 else {
