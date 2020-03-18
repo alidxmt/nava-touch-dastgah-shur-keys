@@ -167,18 +167,26 @@ class Nava {
 
             function navaz(_this,_gain) {
                 //_this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context);     
-
+                let scale_gain = .1;
+                if (_this.intervals[_this._dangs][index]*_this.firstFrequency<4000) {
+                    scale_gain = (4000-_this.intervals[_this._dangs][index]*_this.firstFrequency)*(1/((_this.intervals[_this._dangs][index]*_this.firstFrequency)+4000))
+                    scale_gain =scale_gain;
+                }
+                
                 if (_this.keyAudio[index].start_status == 0) {
                     _this.keyAudio[index].oscillator.start();
                     _this.keyAudio[index].start_status =1;
                     _this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context.currentTime);
-                    _this.keyAudio[index].gainNode.gain.setValueAtTime(_this.keyAudio[index].gainNode.gain.value, _this.keyAudio[index].context.currentTime);
-                    _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain, _this.keyAudio[index].context.currentTime+.06);
+                    _this.keyAudio[index].gainNode.gain.setValueAtTime(0.0000000001, _this.keyAudio[index].context.currentTime);
+                    _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain*scale_gain, _this.keyAudio[index].context.currentTime+.06);
+                    console.log(_gain*scale_gain)
+
                 }
                 else {
                 _this.keyAudio[index].gainNode.gain.cancelScheduledValues(_this.keyAudio[index].context.currentTime);
                 _this.keyAudio[index].gainNode.gain.setValueAtTime(_this.keyAudio[index].gainNode.gain.value, _this.keyAudio[index].context.currentTime);
-                _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain, _this.keyAudio[index].context.currentTime+.06);
+                _this.keyAudio[index].gainNode.gain.exponentialRampToValueAtTime(_gain*scale_gain, _this.keyAudio[index].context.currentTime+.06);
+                console.log(_gain*scale_gain)
                 }
             }
 
@@ -206,13 +214,62 @@ class Nava {
                 //aCircle.setAttribute("fill", _color_object_id[((index).toString(2)[in_index])]);
                 aCircle.setAttribute("fill", _color_object_id[_color(parseInt(((index+1)%(this.key_circle))).toString(2).split("").reverse()[in_index])]);
                 this.gSurf.appendChild(aCircle);                
-            }              
+            }
+           
+
+            // let aText = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+            // aText.innerHTML="0110";
+            // aText.setAttributeNS(null,"x",0)
+            // aText.setAttributeNS(null,"y",15)
+            // aText.setAttributeNS(null,"font-family","Tahoma, Geneva, Verdana, sans-serif")
+            // aText.setAttributeNS(null,"font-size","smaller")
+            // aText.setAttributeNS(null,"fill","gray")            
+
+
+            // this.gSurf.appendChild(aText);
+// 
+// console.log(aText.innerHTML)
+
+        
+            // 64, 214, 219
+
+
+
+
+
+
+            //add four circle top left/ change color based on 6,7,8,9,10,11 distance in talaei system
+            
+      
+      
         }
     return 
     } 
 }
 var Arr_MazrabHa = [1,(2**(500/1200)),(2**(2*500/1200)),(2**((2*500+200)/1200)),(2**((2*500+200)/1200))*2**(500/1200),(2**((2*500+200)/1200))*2**(2*500/1200),(2**((2*500+200)/1200))*2**((200+2*500)/1200)]
-var mainFrequency = 225;
+var mainFrequency = 360;
+// var NavaDaramad = new Nava('daramad-1',620,100,7,0,8,"shur shur",360)
+
+// var NavaOuj = new Nava('ouj-1',620,100,7,0,8,"shur shur",360*(2**(500/1200)))
+
+// var NavaSalmak = new Nava('salmak-1',620,100,7,0,8,"shur nava",360*(2**(500/1200)))
+
+// var NavaBozorg = new Nava('bozorg-1',620,100,7,0,8,"shur nava",360*(2**(2*500/1200)))
+
+// var NavaOzal1 = new Nava('ozal-1',360,100,4,0,5,"nava",360*(2**(2*500/1200)))
+// var NavaOzal2 = new Nava('ozal-2',360,100,4,0,5,"shur",360*(2**((2*500+200)/1200)))
+
+// var NavaDaramadZir = new Nava('daramad-zir-1',620,100,7,0,8,"shur shur",360*(2**((2*500+200)/1200)))
+
+
+// var NavaShahnaz1 = new Nava('shahnaz-1',620,100,7,0,8,"shur shur",360*(2**((2*500+200)/1200))*2**(500/1200))
+// var NavaShahnaz2 = new Nava('shahnaz-2',620,100,7,0,8,"shur nava",360*(2**((2*500+200)/1200))*2**(500/1200))
+// var NavaShahnaz3 = new Nava('shahnaz-3',620,100,7,0,8,"shur nava",360*(2**((2*500+200)/1200))*2**(2*500/1200))
+
+
+// var NavaOujShahrAshoub1 = new Nava('ouj-shahr-ashoub-1',360,100,4,0,5,"nava",360*(2**((2*500+200)/1200))*2**(2*500/1200))
+// var NavaOujShahrAshoub2 = new Nava('ouj-shahr-ashoub-2',360,100,4,0,5,"shur",360*(2**((2*500+200)/1200))*2**((200+2*500)/1200))
+// document.getElementById("main").addEventListener("mousemove",function(){console.log(event.clientX,event.clientY)})
 
 var NavaDaramad = new Nava('daramad-1',620,100,7,0,8,"shur shur",mainFrequency*Arr_MazrabHa[0])
 var NavaOuj = new Nava('ouj-1',620,100,7,0,8,"shur shur",mainFrequency*Arr_MazrabHa[1])
